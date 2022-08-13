@@ -66,6 +66,8 @@ article img {
     bottom: 0;
     left: 0;
     background-color: rgba(0,0,0,0.3);
+    display: none;
+    animation: fadeIn linear 0.2s;
 }
 
 .nav__mobile {
@@ -76,7 +78,9 @@ article img {
     width: 320px;
     max-width: 100%;
     background-color: #fff;
-    
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform linear 0.2s, opacity linear 0.2s;
 }
 
 .nav__mobile-list {
@@ -89,7 +93,28 @@ article img {
     padding: 8px 0;
 }
 
-.nav__mobile-close {}
+.nav__mobile-close {
+    width: 28px;
+    height: 28px;
+    font-size: 1.4rem;
+    color: #666;
+    position: absolute;
+    top: 0.4rem;
+    right: 1rem;
+}
+
+.nav__input {
+    display: none;
+}
+
+.nav__input:checked ~ .nav__overlay {
+    display: block;
+}
+
+.nav__input:checked ~ .nav__mobile {
+    transform: translateX(0%);
+    opacity: 1;
+}
 
 @media (max-width: 1023px) {
     .nav__bars-btn {
@@ -97,5 +122,14 @@ article img {
     }
     .nav__pc {
         display: none;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
